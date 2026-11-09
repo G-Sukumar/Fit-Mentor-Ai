@@ -1,0 +1,152 @@
+[
+  {
+    "id": "w0000000-0000-0000-0000-000000000001",
+    "title": "Power Hypertrophy Upper Body",
+    "category": "Upper Body",
+    "targetGoal": "HYPERTROPHY",
+    "difficulty": "ADVANCED",
+    "equipment": "FULL_GYM",
+    "location": "GYM",
+    "durationEstMin": 60
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000002",
+    "title": "Lower Body Power & Core",
+    "category": "Lower Body",
+    "targetGoal": "HYPERTROPHY",
+    "difficulty": "INTERMEDIATE",
+    "equipment": "FULL_GYM",
+    "location": "GYM",
+    "durationEstMin": 55
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000003",
+    "title": "Beginner Full Gym Foundation",
+    "category": "Full Body",
+    "targetGoal": "GENERAL_FITNESS",
+    "difficulty": "BEGINNER",
+    "equipment": "FULL_GYM",
+    "location": "GYM",
+    "durationEstMin": 45
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000004",
+    "title": "Home Calisthenics Fat Burner",
+    "category": "Full Body Cardio",
+    "targetGoal": "FAT_LOSS",
+    "difficulty": "BEGINNER",
+    "equipment": "BODYWEIGHT",
+    "location": "HOME",
+    "durationEstMin": 30
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000005",
+    "title": "Heavy Barbell Strength Overload",
+    "category": "Strength",
+    "targetGoal": "STRENGTH",
+    "difficulty": "ADVANCED",
+    "equipment": "FULL_GYM",
+    "location": "GYM",
+    "durationEstMin": 90
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000006",
+    "title": "Home Dumbbell Muscle Builder",
+    "category": "Upper Body",
+    "targetGoal": "HYPERTROPHY",
+    "difficulty": "INTERMEDIATE",
+    "equipment": "DUMBBELLS",
+    "location": "HOME",
+    "durationEstMin": 60
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000007",
+    "title": "High Intensity Endurance Circuit",
+    "category": "Endurance",
+    "targetGoal": "ENDURANCE",
+    "difficulty": "INTERMEDIATE",
+    "equipment": "BODYWEIGHT",
+    "location": "HOME",
+    "durationEstMin": 45
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000008",
+    "title": "Decompression & Joint Mobility Flow",
+    "category": "Mobility & Stretch",
+    "targetGoal": "RECOVERY",
+    "difficulty": "BEGINNER",
+    "equipment": "BODYWEIGHT",
+    "location": "HOME",
+    "durationEstMin": 30
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000009",
+    "title": "Heavy Dumbbell Strength & Power",
+    "category": "Full Body Strength",
+    "targetGoal": "STRENGTH",
+    "difficulty": "ADVANCED",
+    "equipment": "DUMBBELLS",
+    "location": "HOME",
+    "durationEstMin": 75
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000010",
+    "title": "Gym Aerobic Stamina & Conditioning",
+    "category": "Cardio & Legs",
+    "targetGoal": "ENDURANCE",
+    "difficulty": "ADVANCED",
+    "equipment": "FULL_GYM",
+    "location": "GYM",
+    "durationEstMin": 75
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000011",
+    "title": "Active Gym Recovery & Deload",
+    "category": "Active Recovery",
+    "targetGoal": "RECOVERY",
+    "difficulty": "INTERMEDIATE",
+    "equipment": "FULL_GYM",
+    "location": "GYM",
+    "durationEstMin": 45
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000012",
+    "title": "Dumbbell Fat Loss Metabolic HIIT",
+    "category": "Metabolic",
+    "targetGoal": "FAT_LOSS",
+    "difficulty": "INTERMEDIATE",
+    "equipment": "DUMBBELLS",
+    "location": "HOME",
+    "durationEstMin": 45
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000013",
+    "title": "Advanced Bodyweight Calisthenics Volume",
+    "category": "Bodyweight Hypertrophy",
+    "targetGoal": "HYPERTROPHY",
+    "difficulty": "INTERMEDIATE",
+    "equipment": "BODYWEIGHT",
+    "location": "HOME",
+    "durationEstMin": 60
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000014",
+    "title": "General Fitness Express Dumbbells",
+    "category": "Full Body",
+    "targetGoal": "GENERAL_FITNESS",
+    "difficulty": "BEGINNER",
+    "equipment": "DUMBBELLS",
+    "location": "HOME",
+    "durationEstMin": 30
+  },
+  {
+    "id": "w0000000-0000-0000-0000-000000000015",
+    "title": "Advanced Bodyweight Stamina Challenge",
+    "category": "Calisthenics Endurance",
+    "targetGoal": "ENDURANCE",
+    "difficulty": "ADVANCED",
+    "equipment": "BODYWEIGHT",
+    "location": "HOME",
+    "durationEstMin": 90
+  }
+]

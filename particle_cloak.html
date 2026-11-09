@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitMentor AI | Modern Gym World & Biometrics Platform</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #040711;
+      --bg-card: rgba(10, 16, 30, 0.75);
+      --bg-card-hover: rgba(18, 28, 52, 0.9);
+      --accent-cyan: #00f2fe;
+      --accent-purple: #7000ff;
+      --accent-pink: #ff007f;
+      --accent-lime: #00ff88;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, #38bdf8 30%, var(--accent-purple) 70%, var(--accent-pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-neon {
+      background: linear-gradient(135deg, var(--accent-lime) 0%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Glassmorphism Panel */
+    .glass-panel {
+      background: var(--bg-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-panel:hover {
+      border-color: rgba(0, 242, 254, 0.4);
+      box-shadow: 0 16px 50px 0 rgba(0, 242, 254, 0.18);
+      transform: translateY(-5px);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.25rem 2.5rem;
+      background: rgba(4, 7, 17, 0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.25rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-cyan);
+    }
+
+    .btn-glow {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: #fff;
+      font-weight: 700;
+      padding: 0.8rem 1.8rem;
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.35);
+      transition: all 0.3s;
+    }
+
+    .btn-glow:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(0, 242, 254, 0.65);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.8rem 1.8rem;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent-cyan);
+    }
+
+    /* HERO INTRO SECTION */
+    .hero-container {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+      padding: 8rem 4rem 4rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        padding: 7rem 2rem 3rem 2rem;
+        text-align: center;
+      }
+    }
+
+    canvas#particle-cloak {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: auto;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-actions {
+        justify-content: center;
+      }
+    }
+
+    .hero-right {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-img-frame {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-img-frame img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .hero-img-frame:hover img {
+      transform: scale(1.03);
+    }
+
+    .hero-overlay-card {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(5, 10, 24, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* SECTION LAYOUTS */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4rem auto;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      margin-top: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* FEATURES GRID */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .feature-icon-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(112, 0, 255, 0.15));
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--accent-cyan);
+    }
+
+    .feature-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* AI COMPUTER VISION SHOWCASE */
+    .telemetry-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+      background: rgba(8, 14, 28, 0.85);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 32px;
+      padding: 3.5rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    @media (max-width: 1024px) {
+      .telemetry-container {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+      }
+    }
+
+    .vision-img-box {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+    }
+
+    .vision-img-box img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .vision-hud-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(4, 7, 17, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* PROGRAM MATRIX SECTION WITH IMAGES */
+    .program-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(112, 0, 255, 0.2));
+      border-color: var(--accent-cyan);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.25rem;
+    }
+
+    .program-card {
+      overflow: hidden;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .program-card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .program-card-body {
+      padding: 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* TRAINERS SECTION */
+    .trainers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.25rem;
+    }
+
+    .trainer-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .trainer-img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    .trainer-body {
+      padding: 2rem;
+    }
+
+    /* PRICING SECTION */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.25rem;
+      margin-top: 3rem;
+    }
+
+    .pricing-card {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent-cyan);
+      background: linear-gradient(180deg, rgba(14, 24, 48, 0.95) 0%, rgba(24, 12, 48, 0.95) 100%);
+      box-shadow: 0 0 45px rgba(0, 242, 254, 0.25);
+    }
+
+    .price-num {
+      font-size: 3.2rem;
+      font-weight: 900;
+      margin: 1rem 0;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .price-features {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .price-features li {
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .price-features li svg {
+      color: var(--accent-lime);
+      flex-shrink: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: #020409;
+      padding: 4.5rem 2rem 2.5rem 2rem;
+    }
+
+    .footer-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 3.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .footer-col h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 1.25rem;
+      font-size: 1.15rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-col ul li a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: color 0.25s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--accent-cyan);
+    }
+
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="#" class="brand-logo">
+      <div class="brand-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+      </div>
+      <span>FitMentor <span class="gradient-text">AI</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#features">Kinetic AI Engine</a></li>
+      <li><a href="#telemetry">Pose & Biometrics</a></li>
+      <li><a href="#programs">Training Matrix</a></li>
+      <li><a href="#trainers">Coaches & Agents</a></li>
+      <li><a href="#pricing">Membership</a></li>
+    </ul>
+
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <a href="frontend/index.html" class="btn-outline" style="padding: 0.65rem 1.4rem; font-size: 0.9rem;">Sign In</a>
+      <a href="frontend/index.html" class="btn-glow" style="padding: 0.65rem 1.5rem; font-size: 0.9rem;">Launch Portal</a>
+    </div>
+  </nav>
+
+  <!-- HERO INTRO SECTION -->
+  <section class="hero-container">
+    <canvas id="particle-cloak"></canvas>
+
+    <!-- HERO LEFT CONTENT -->
+    <div class="hero-left">
+      <div class="badge-tag">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        NEXT-GEN GYM WORLD PLATFORM &bull; AI BIOMETRICS 2.0
+      </div>
+
+      <h1 class="hero-title">
+        ENGINEER YOUR PEAK <br />
+        <span class="gradient-text">HUMAN PERFORMANCE</span>
+      </h1>
+
+      <p class="hero-sub">
+        Revolutionary personal fitness coaching fusing Gemini LLM agent intelligence, real-time computer vision 3D pose estimation, kinetic biometrics, and high-intensity gym routines.
+      </p>
+
+      <div class="hero-actions">
+        <a href="frontend/index.html" class="btn-glow">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Start 7-Day Free Pass
+        </a>
+        <a href="#telemetry" class="btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+          Explore Pose Vision Demo
+        </a>
+      </div>
+
+      <div style="display: flex; gap: 2rem; margin-top: 2rem;">
+        <div>
+          <div class="font-heading gradient-neon" style="font-size: 2.2rem; font-weight: 800;">99.4%</div>
+          <div style="color: var(--text-muted); font-size: 0.88rem;">Biomechanical Accuracy</div>
+        </div>
+        <div style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: 2rem;">
+          <div class="font-heading gradient-text" style="font-size: 2.2rem; font-weight: 800;">240K+</div>
+          <div style="color: var(--text-muted); font-size: 0.88rem;">Workouts Executed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO RIGHT IMAGE FRAME -->
+    <div class="hero-right">
+      <div class="hero-img-frame">
+        <img src="assets/images/hero_gym.jpg" alt="FitMentor AI Futuristic Gym Workout" />
+        <div class="hero-overlay-card">
+          <div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent-cyan);">SESSION TELEMETRY ACTIVE</div>
+            <strong style="font-size: 1.05rem;">Barbell Squat &bull; Load 140kg</strong>
+          </div>
+          <div style="background: rgba(0, 255, 136, 0.15); border: 1px solid var(--accent-lime); color: var(--accent-lime); padding: 0.3rem 0.8rem; border-radius: 999px; font-weight: 700; font-size: 0.8rem;">
+            FORM: OPTIMAL
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KINETIC AI ENGINE FEATURES SECTION -->
+  <section id="features" class="section">
+    <div class="section-header">
+      <div class="badge-tag">REVOLUTIONARY ATHLETIC ENGINE</div>
+      <h2 class="section-title">Built for Gyms, Designed for <span class="gradient-text">Champions</span></h2>
+      <p class="section-subtitle">Combining cutting-edge computer vision, generative AI coaches, and biometric telemetry into a seamless training universe.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="glass-panel feature-card">
+        <div>
+          <div class="feature-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          </div>
+          <h3 class="feature-title">Real-Time Form Check</h3>
+          <p class="feature-desc">Using your camera, MediaPipe CV tracks 33 3D body keypoints in real time, detecting joint angles, squat depth, and spinal alignment instantly.</p>
+        </div>
+        <div class="font-mono" style="color: var(--accent-lime); font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;">
+          ✓ 0.02s Ultra-Low Latency Feedback
+        </div>
+      </div>
+
+      <div class="glass-panel feature-card">
+        <div>
+          <div class="feature-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <h3 class="feature-title">Gemini AI Adaptive Coach</h3>
+          <p class="feature-desc">Conversational sports science agent adjusts set intensities, rest intervals, and nutrition macros dynamically based on daily readiness scores.</p>
+        </div>
+        <div class="font-mono" style="color: var(--accent-lime); font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;">
+          ✓ Personalized Muscle Hypertrophy
+        </div>
+      </div>
+
+      <div class="glass-panel feature-card">
+        <div>
+          <div class="feature-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </div>
+          <h3 class="feature-title">Kinetic Recovery Telemetry</h3>
+          <p class="feature-desc">Integrates HRV, sleep quality, and muscle fatigue heatmaps to calculate daily readiness (0-100), avoiding overtraining injuries.</p>
+        </div>
+        <div class="font-mono" style="color: var(--accent-lime); font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;">
+          ✓ Biometric Shield Protection
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPUTER VISION TELEMETRY SHOWCASE WITH GENERATED IMAGE -->
+  <section id="telemetry" class="section">
+    <div class="telemetry-container">
+      <div class="vision-img-box">
+        <img src="assets/images/ai_vision.jpg" alt="Computer Vision Pose Analysis" />
+        <div class="vision-hud-tag">LIVE POSE RECOGNITION: ACTIVE</div>
+      </div>
+
+      <div>
+        <div class="badge-tag">COMPUTER VISION ENGINE</div>
+        <h2 style="font-size: 2.4rem; font-weight: 800; margin-bottom: 1.25rem;">
+          3D Skeletal Mesh <br />
+          <span class="gradient-text">Kinetic Analysis</span>
+        </h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.75rem; line-height: 1.6;">
+          Our proprietary neural vision pipeline captures movement velocity, joint torque, and repetition velocity directly in browser with zero extra hardware.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(0,242,254,0.15); display: flex; align-items: center; justify-content: center; color: var(--accent-cyan); font-weight: 800;">✓</div>
+            <div>
+              <strong style="color: #fff; font-size: 1.05rem;">Squat Depth Index: 92°</strong>
+              <div style="font-size: 0.88rem; color: var(--text-muted);">Optimal femur parallel angle achieved</div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(112,0,255,0.15); display: flex; align-items: center; justify-content: center; color: var(--accent-purple); font-weight: 800;">✓</div>
+            <div>
+              <strong style="color: #fff; font-size: 1.05rem;">Spine Alignment: Neutral (6.8° Lean)</strong>
+              <div style="font-size: 0.88rem; color: var(--text-muted);">Zero spine rounding detected during lift</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINING MATRIX SHOWCASE -->
+  <section id="programs" class="section">
+    <div class="section-header">
+      <div class="badge-tag">CUSTOMIZABLE WORKOUT MATRIX</div>
+      <h2 class="section-title">Explore Elite <span class="gradient-text">Gym World Programs</span></h2>
+      <p class="section-subtitle">Tailored routines created by top strength coaches and optimized by AI algorithms.</p>
+    </div>
+
+    <div class="program-tabs">
+      <button class="tab-btn active" onclick="filterPrograms('all', this)">All Programs</button>
+      <button class="tab-btn" onclick="filterPrograms('hypertrophy', this)">Hypertrophy & Strength</button>
+      <button class="tab-btn" onclick="filterPrograms('hiit', this)">HIIT & Cardio Engine</button>
+    </div>
+
+    <div class="programs-grid">
+      <div class="glass-panel program-card" data-cat="hypertrophy">
+        <img src="assets/images/hypertrophy.jpg" alt="Hypertrophy Program" class="program-card-img" />
+        <div class="program-card-body">
+          <div>
+            <div style="color: var(--accent-lime); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">PRO STRENGTH</div>
+            <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem;">Hypertrophy 5x5 Power</h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem;">Maximum mechanical tension focus with RPE progression algorithm.</p>
+          </div>
+          <a href="frontend/index.html" class="btn-outline" style="width: 100%; text-align: center; justify-content: center; margin-top: 1.5rem;">Enroll in Program</a>
+        </div>
+      </div>
+
+      <div class="glass-panel program-card" data-cat="hiit">
+        <img src="assets/images/hero_gym.jpg" alt="Cybernetic HIIT" class="program-card-img" />
+        <div class="program-card-body">
+          <div>
+            <div style="color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">HIIT & CARDIO</div>
+            <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem;">Cybernetic HIIT Protocol</h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem;">Explosive plyometric intervals with heart-rate zone synchronization.</p>
+          </div>
+          <a href="frontend/index.html" class="btn-outline" style="width: 100%; text-align: center; justify-content: center; margin-top: 1.5rem;">Enroll in Program</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINERS & AI AGENTS SHOWCASE -->
+  <section id="trainers" class="section">
+    <div class="section-header">
+      <div class="badge-tag">ELITE COACHING STAFF</div>
+      <h2 class="section-title">Guided by Master Trainers & <span class="gradient-text">AI Agents</span></h2>
+      <p class="section-subtitle">Train with industry experts backed by Gemini generative sports science intelligence.</p>
+    </div>
+
+    <div class="trainers-grid">
+      <div class="glass-panel trainer-card">
+        <img src="assets/images/trainer_pro.jpg" alt="Coach Sarah Reed" class="trainer-img" />
+        <div class="trainer-body">
+          <div style="color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 700;">HEAD OF BIOMETRICS</div>
+          <h3 style="font-size: 1.35rem; font-weight: 700; margin-top: 0.25rem;">Sarah Reed, CSCS</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Specialist in biomechanical movement and injury prevention recovery protocols.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SECTION -->
+  <section id="pricing" class="section">
+    <div class="section-header">
+      <div class="badge-tag">MEMBERSHIP TIERS</div>
+      <h2 class="section-title">Invest in Your <span class="gradient-text">Physical Mastery</span></h2>
+      <p class="section-subtitle">Transparent plans. Cancel anytime. Start with a 7-day trial.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="glass-panel pricing-card">
+        <div>
+          <h3 style="font-size: 1.3rem;">Fit Starter</h3>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">Ideal for gym beginners</p>
+          <div class="price-num">$19 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/mo</span></div>
+          <ul class="price-features">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Basic AI Workout Generator</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 15 Computer Vision Form Checks</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Standard Progress Telemetry</li>
+          </ul>
+        </div>
+        <a href="frontend/index.html" class="btn-outline" style="text-align: center; justify-content: center;">Choose Starter</a>
+      </div>
+
+      <div class="glass-panel pricing-card featured">
+        <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--accent-cyan); color: #000; font-weight: 800; font-size: 0.75rem; padding: 0.2rem 1rem; border-radius: 999px;">MOST POPULAR</div>
+        <div>
+          <h3 style="font-size: 1.3rem;">Pro Athlete AI</h3>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">For serious gym enthusiasts</p>
+          <div class="price-num gradient-text">$49 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/mo</span></div>
+          <ul class="price-features">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Unlimited Computer Vision Pose Checks</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 24/7 Gemini Sports Science Agent</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Full Biomechanical Fatigue Heatmaps</li>
+          </ul>
+        </div>
+        <a href="frontend/index.html" class="btn-glow" style="text-align: center; justify-content: center;">Start Pro Trial</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <a href="#" class="brand-logo" style="margin-bottom: 1rem; display: inline-flex;">
+          <div class="brand-icon">⚡</div>
+          <span>FitMentor <span class="gradient-text">AI</span></span>
+        </a>
+        <p style="color: var(--text-muted); font-size: 0.92rem; max-width: 320px;">
+          Empowering human kinetic potential through real-time computer vision and generative AI sports science.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#features">Kinetic Engine</a></li>
+          <li><a href="#telemetry">Biometrics</a></li>
+          <li><a href="#programs">Training Matrix</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="frontend/index.html">Web App Portal</a></li>
+          <li><a href="http://localhost:5000/api/health">API Endpoint</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>System Status</h4>
+        <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: 0.5rem;">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent-lime); display: inline-block;"></span>
+          <span style="color: var(--accent-lime); font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;">Backend Port 5000 Active</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 FitMentor AI Inc. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- CANVAS PARTICLES LOGIC -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('particle-cloak');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let w = 0, h = 0, dpr = 1;
+      let targetPtr = { x: 0, y: 0 };
+      let easedPtr = { x: 0, y: 0 };
+      let hasEntered = false;
+      let particles = [];
+
+      class Particle {
+        constructor(x, y) {
+          this.homeX = x;
+          this.homeY = y;
+          this.x = x;
+          this.y = y;
+          this.vx = 0;
+          this.vy = 0;
+          this.radius = 1.2 + Math.random() * 1.8;
+          
+          const rand = Math.random();
+          if (rand < 0.5) this.color = '0, 242, 254';
+          else if (rand < 0.85) this.color = '112, 0, 255';
+          else this.color = '0, 255, 136';
+        }
+
+        update(easedX, easedY, R) {
+          const dx = this.x - easedX;
+          const dy = this.y - easedY;
+          const d = Math.hypot(dx, dy);
+
+          if (d < R) {
+            const f = Math.pow(1 - d / R, 2.5) * 4.2;
+            const nx = dx / (d || 0.0001);
+            const ny = dy / (d || 0.0001);
+            this.vx += nx * f;
+            this.vy += ny * f;
+          }
+
+          this.vx += (this.homeX - this.x) * 0.03;
+          this.vy += (this.homeY - this.y) * 0.03;
+          this.vx *= 0.84;
+          this.vy *= 0.84;
+          this.x += this.vx;
+          this.y += this.vy;
+        }
+
+        draw(ctx) {
+          const dist = Math.hypot(this.x - this.homeX, this.y - this.homeY);
+          const alpha = Math.max(0.15, 0.75 - dist / 80);
+          ctx.fillStyle = `rgba(${this.color}, ${alpha})`;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      function initGrid() {
+        w = canvas.parentElement.clientWidth;
+        h = canvas.parentElement.clientHeight;
+        dpr = window.devicePixelRatio || 1;
+
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        particles = [];
+        const step = Math.max(16, Math.min(w, h) / 24);
+
+        for (let x = step / 2; x < w; x += step) {
+          for (let y = step / 2; y < h; y += step) {
+            particles.push(new Particle(x, y));
+          }
+        }
+
+        targetPtr = { x: w / 2, y: h / 2 };
+        easedPtr = { x: w / 2, y: h / 2 };
+      }
+
+      window.addEventListener('resize', initGrid);
+      initGrid();
+
+      window.addEventListener('pointermove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        targetPtr.x = e.clientX - rect.left;
+        targetPtr.y = e.clientY - rect.top;
+        hasEntered = true;
+      });
+
+      function animate(time) {
+        requestAnimationFrame(animate);
+
+        if (!hasEntered) {
+          const t = time * 0.0012;
+          targetPtr.x = w / 2 + Math.sin(t * 0.8) * (w * 0.25);
+          targetPtr.y = h / 2 + Math.cos(t * 1.1) * (h * 0.2);
+        }
+
+        easedPtr.x += (targetPtr.x - easedPtr.x) * 0.14;
+        easedPtr.y += (targetPtr.y - easedPtr.y) * 0.14;
+
+        ctx.clearRect(0, 0, w, h);
+        const R = 0.32 * Math.min(w, h);
+
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update(easedPtr.x, easedPtr.y, R);
+          particles[i].draw(ctx);
+        }
+      }
+
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+</html>

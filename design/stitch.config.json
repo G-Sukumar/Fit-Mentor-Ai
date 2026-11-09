@@ -1,0 +1,96 @@
+{
+  "stitch": {
+    "version": "1.0",
+    "projectId": "16575783439607592046",
+    "resourceName": "projects/16575783439607592046",
+    "title": "Markdown Design System / FitMentor AI",
+    "projectType": "TEXT_TO_UI_PRO",
+    "deviceType": "DESKTOP",
+    "connectedAt": "2026-08-24T23:40:00Z",
+    "designTheme": {
+      "name": "Kinetic Horizon",
+      "colorMode": "DARK",
+      "primaryColor": "#22D3EE",
+      "secondaryColor": "#8B5CF6",
+      "accentGold": "#D4AF6A",
+      "backgroundColor": "#050912",
+      "surfaceColor": "#101925",
+      "surfaceElevated": "#162235",
+      "borderColor": "#263244",
+      "headlineFont": "Space Grotesk",
+      "bodyFont": "Geist",
+      "labelFont": "JetBrains Mono"
+    },
+    "screens": [
+      {
+        "id": "aa1954a73158480ca321b5582339faa0",
+        "title": "FitMentor AI - Ultimate Premium Dashboard",
+        "deviceType": "DESKTOP",
+        "resolution": "2560x2048",
+        "localFile": "design/screens/ultimate_premium_dashboard.html"
+      },
+      {
+        "id": "be90a663ba5849f6898a881d58fdd5bb",
+        "title": "FitMentor AI - Final Polish Dashboard",
+        "deviceType": "DESKTOP",
+        "resolution": "2560x2290",
+        "localFile": "design/screens/final_polish_dashboard.html"
+      },
+      {
+        "id": "3f335837b5c640ffb19f87b52b3af447",
+        "title": "FitMentor AI - Ultra-Premium Dashboard",
+        "deviceType": "DESKTOP",
+        "resolution": "2560x2282",
+        "localFile": "design/screens/ultra_premium_dashboard.html"
+      },
+      {
+        "id": "981e9def5bf34cc4ab5589173d09427a",
+        "title": "FitMentor AI - User Dashboard",
+        "deviceType": "DESKTOP",
+        "resolution": "2560x2048",
+        "localFile": "design/screens/user_dashboard.html"
+      },
+      {
+        "id": "8128364ce0d045639747a3020e152c02",
+        "title": "FitMentor AI - Interactive Dashboard",
+        "deviceType": "DESKTOP",
+        "resolution": "2560x2048",
+        "localFile": "design/screens/interactive_dashboard.html"
+      },
+      {
+        "id": "dca714960d0949ac980536bcc71325d7",
+        "title": "FitMentor AI - Interactive Premium Dashboard",
+        "deviceType": "DESKTOP",
+        "resolution": "2560x2048",
+        "localFile": "design/screens/interactive_premium_dashboard.html"
+      },
+      {
+        "id": "d3a3347f1d7e411ab840785184dab1f7",
+        "title": "FitMentor AI - Premium Dashboard",
+        "deviceType": "DESKTOP",
+        "resolution": "2560x2048",
+        "localFile": "design/screens/premium_dashboard.html"
+      }
+    ],
+    "assets": [
+      {
+        "id": "11043189299840457656",
+        "title": "DESIGN.md Design Specification",
+        "type": "MARKDOWN_DESIGN_SYSTEM",
+        "localFile": "design/DESIGN.md"
+      },
+      {
+        "id": "6414a6f89d65424a812e6eaaf6cb935f",
+        "title": "Atmospheric Background WebGL Shader",
+        "type": "SHADER",
+        "localFile": "assets/shaders/atmospheric_shader.frag"
+      },
+      {
+        "id": "d8fc6b33309c40a68e75eac67d0f0822",
+        "title": "Cinematic Athlete Hero Image",
+        "type": "IMAGE",
+        "dimensions": "1376x768"
+      }
+    ]
+  }
+}

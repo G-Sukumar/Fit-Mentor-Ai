@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitMentor AI - Particle Cloak</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #050912;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+    }
+
+    /* Container holding DOM content and Canvas overlay */
+    .viewport {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 50%, #0d1527 0%, #050912 100%);
+    }
+
+    /* UNDERNEATH: Revealed Plate of Content */
+    .plate {
+      position: absolute;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      max-width: 90vw;
+      pointer-events: none;
+    }
+
+    .gradient-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #22d3ee 0%, #8b5cf6 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(34, 211, 238, 0.25);
+    }
+
+    .mono-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(0.75rem, 1.8vw, 1.05rem);
+      font-weight: 600;
+      color: #94a3b8;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-top: 1.25rem;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.1);
+    }
+
+    /* THE CLOAK: Canvas 2D overlay */
+    canvas#cloak {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      touch-action: none;
+      cursor: crosshair;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport">
+    <!-- UNDERNEATH CONTENT -->
+    <div class="plate">
+      <h1 class="gradient-headline">FitMentor AI</h1>
+      <p class="mono-caption">INTELLIGENT KINETIC BIOMETRICS &bull; HOVER TO PART THE CLOAK</p>
+    </div>
+
+    <!-- THE CLOAK CANVAS -->
+    <canvas id="cloak"></canvas>
+  </div>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('cloak');
+      const ctx = canvas.getContext('2d');
+
+      let w = 0;
+      let h = 0;
+      let dpr = 1;
+
+      // Pointer tracking
+      let targetPtr = { x: 0, y: 0 };
+      let easedPtr = { x: 0, y: 0 };
+      let hasEntered = false;
+      let isTouchLocked = false;
+
+      // Particles array
+      let particles = [];
+
+      class Particle {
+        constructor(x, y) {
+          this.homeX = x;
+          this.homeY = y;
+          this.x = x;
+          this.y = y;
+          this.vx = 0;
+          this.vy = 0;
+          this.radius = 1 + Math.random() * 1.6; // 1 to 2.6px
+          const hueChoice = Math.random();
+          if (hueChoice < 0.65) {
+            this.color = '34, 211, 238'; // Cyan
+          } else if (hueChoice < 0.85) {
+            this.color = '139, 92, 246'; // Purple
+          } else {
+            this.color = '248, 250, 252'; // White accent
+          }
+        }
+
+        update(easedX, easedY, R) {
+          const dx = this.x - easedX;
+          const dy = this.y - easedY;
+          const d = Math.hypot(dx, dy);
+
+          if (d < R) {
+            const f = Math.pow(1 - d / R, 2) * 3.4;
+            const nx = dx / (d || 0.0001);
+            const ny = dy / (d || 0.0001);
+            this.vx += nx * f;
+            this.vy += ny * f;
+          }
+
+          this.vx += (this.homeX - this.x) * 0.024;
+          this.vy += (this.homeY - this.y) * 0.024;
+
+          this.vx *= 0.86;
+          this.vy *= 0.86;
+
+          this.x += this.vx;
+          this.y += this.vy;
+        }
+
+        draw(ctx) {
+          const distanceFromHome = Math.hypot(this.x - this.homeX, this.y - this.homeY);
+          const alpha = Math.max(0, 0.72 - distanceFromHome / 70);
+
+          if (alpha > 0.001) {
+            ctx.fillStyle = `rgba(${this.color}, ${alpha.toFixed(3)})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      }
+
+      function initGrid() {
+        w = window.innerWidth;
+        h = window.innerHeight;
+        dpr = window.devicePixelRatio || 1;
+
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        particles = [];
+
+        const step = Math.max(9, Math.min(w, h) / 22);
+
+        const offsetX = (w % step) / 2;
+        const offsetY = (h % step) / 2;
+
+        for (let x = offsetX + step / 2; x < w; x += step) {
+          for (let y = offsetY + step / 2; y < h; y += step) {
+            particles.push(new Particle(x, y));
+          }
+        }
+
+        if (!hasEntered) {
+          targetPtr = { x: w / 2, y: h / 2 };
+          easedPtr = { x: w / 2, y: h / 2 };
+        }
+      }
+
+      window.addEventListener('resize', initGrid);
+      initGrid();
+
+      window.addEventListener('pointermove', (e) => {
+        if (isTouchLocked) return;
+        targetPtr.x = e.clientX;
+        targetPtr.y = e.clientY;
+        hasEntered = true;
+      });
+
+      window.addEventListener('pointerenter', () => {
+        if (isTouchLocked) return;
+        hasEntered = true;
+      });
+
+      window.addEventListener('pointerleave', () => {
+        if (isTouchLocked) return;
+        hasEntered = false;
+      });
+
+      window.addEventListener('touchstart', () => {
+        isTouchLocked = true;
+      }, { passive: true });
+
+      function animate(time) {
+        requestAnimationFrame(animate);
+
+        if (!hasEntered || isTouchLocked) {
+          const t = time * 0.001;
+          targetPtr.x = w / 2 + Math.sin(t * 0.75) * (w * 0.3);
+          targetPtr.y = h / 2 + Math.sin(t * 1.25 + 0.4) * (h * 0.22);
+        }
+
+        easedPtr.x += (targetPtr.x - easedPtr.x) * 0.16;
+        easedPtr.y += (targetPtr.y - easedPtr.y) * 0.16;
+
+        ctx.clearRect(0, 0, w, h);
+
+        const R = 0.34 * Math.min(w, h);
+
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update(easedPtr.x, easedPtr.y, R);
+          particles[i].draw(ctx);
+        }
+      }
+
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+</html>
