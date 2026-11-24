@@ -1,4 +1,4 @@
-# ⚔️ FitMentor AI — Solo Leveling-Inspired Fitness RPG & Biomechanics Platform
+# ⚔️ FitMentor AI — Solo Leveling-Inspired Fitness Platform
 link : https://fit-mentor-ai.onrender.com/
 <p align="center">
   <img src="frontend/public/logo.png" alt="FitMentor AI Logo" width="160" />
